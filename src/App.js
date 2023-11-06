@@ -12,7 +12,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Nutty
+          Nutty from app one
         </a>
       </header>
     </div>
