@@ -28,13 +28,16 @@ jobs:
       - name: "Set up Cloud SDK"
         uses: "google-github-actions/setup-gcloud@v1"
 
+      - name: "Set default region"
+        run: gcloud config set compute/region asia-southeast1
+
       - name: "Install and Build"
         run: |
           npm ci
           npm run build
   
       - name: Deploy app to Google Cloud App Engine
-        run: gcloud app deploy app.yaml --project ${{ secrets.GCP_PROJECT_ID }} --region asia-southeast1
+        run: gcloud app deploy app.yaml --project ${{ secrets.GCP_PROJECT_ID }}
 
       - id: "test"
         name: "Test the deployed app"
