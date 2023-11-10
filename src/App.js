@@ -12,7 +12,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Nutty from app one (Deployed on Github Action with verification)
+          Nutty from app one (Deployed on Github Action with verification, waiting 60 seconds for testing.)
         </a>
       </header>
     </div>

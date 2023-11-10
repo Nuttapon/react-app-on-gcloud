@@ -28,21 +28,18 @@ jobs:
       - name: "Set up Cloud SDK"
         uses: "google-github-actions/setup-gcloud@v1"
 
-      - name: "Set default region"
-        run: gcloud config set compute/region asia-southeast1
-
       - name: "Install and Build"
         run: |
           npm ci
           npm run build
   
       - name: Deploy app to Google Cloud App Engine
-        run: gcloud app deploy app.yaml --project ${{ secrets.GCP_PROJECT_ID }}
+        run: gcloud app deploy app.yaml --project ${{ secrets.GCP_PROJECT_ID }} --region asia-southeast1
 
       - id: "test"
         name: "Test the deployed app"
         run: |
-          sleep 10 # Wait for the app to start
+          sleep 60 # Wait for the app to start
           status_code=$(curl --write-out "%{http_code}\n" --silent --output /dev/null "https://app-one-dot-${{ secrets.GCP_PROJECT_ID }}.as.r.appspot.com")
           if [ "$status_code" -ne 200 ] ; then
             echo "App returned status code $status_code"
