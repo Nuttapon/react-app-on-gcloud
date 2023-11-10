@@ -30,3 +30,12 @@ jobs:
   
       - name: "Use gcloud CLI"
         run: "gcloud info"
+
+      - name: "Install and Build"
+        run: |
+          npm ci
+          npm run build
+  
+      - name: Deploy app to Google Cloud App Engine
+        run: gcloud app deploy app.yaml --project ${{ secrets.GCP_PROJECT_ID }}
+
